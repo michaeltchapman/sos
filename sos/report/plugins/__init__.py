@@ -2323,6 +2323,25 @@ class Plugin(object):
         if _runtime is not None:
             self.add_cmd_output(_runtime.get_logs_command(container), **kwargs)
 
+    def fmt_container_copy(self, container, source, dest):
+        """Format a command to be executed by the loaded ``ContainerRuntime``
+        on the host that will copy files from `source` within the `container`
+        to `dest` on the host
+
+        :param container:   The name of the container to copy from
+        :type container: ``str``
+
+        :param source:   The path within the container to copy
+        :type source: ``str``
+
+        :param dest:   The path within the container to copy
+        :type dest: ``str``
+
+        """
+        _runtime = self._get_container_runtime()
+        if _runtime is not None:
+            return _runtime.get_copy_command(container, source, dest)
+
     def fmt_container_cmd(self, container, cmd, quotecmd=False):
         """Format a command to be executed by the loaded ``ContainerRuntime``
         in a specified container

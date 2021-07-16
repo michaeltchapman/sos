@@ -194,5 +194,16 @@ class ContainerRuntime():
         """
         return "%s logs -t %s" % (self.binary, container)
 
+    def get_copy_command(self, container, source, dest):
+        """Get the command string used to copy files from the runtime
+
+        :param container: The name or ID of the container to copy from 
+        :type container: ``str``
+
+        :returns: Formatted runtime command to copy files from `container`
+        :type: ``str``
+        """
+        return "%s cp %s:%s %s" % (self.binary, container, source, dest)
+
 
 # vim: set et ts=4 sw=4 :
